@@ -81,6 +81,11 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(true);
   };
 
+  // Resume Both Timer
+  const allTimerResume = () => {
+    setPauseAllTimer(false);
+  };
+
   // Pause Player One Timer
   const playerOnePause = () => {
     setPauseTimerPlayerOne(!pauseTimerPlayerOne);
@@ -139,7 +144,7 @@ const Clock = (): JSX.Element => {
             : styles["timer-button-top"]
         }
         onClick={initialTimePlayerTwo ? startTimerPlayerTwo : playerTwoPause}
-        disabled={pauseTimerPlayerTwo}
+        disabled={pauseTimerPlayerTwo || (pauseAllTimer && pauseTimerPlayerOne)}
       >
         {`${P2hrs.toString().padStart(2, "0")}:${P2mins.toString().padStart(
           2,
@@ -148,7 +153,10 @@ const Clock = (): JSX.Element => {
       </button>
 
       <div className={styles["clock-settings"]}>
-        <button onClick={allTimerPause}>
+        <button
+          onClick={pauseAllTimer ? allTimerResume : allTimerPause}
+          disabled={initialTimePlayerOne || initialTimePlayerTwo}
+        >
           <img src={pauseAllTimer ? "/play.svg" : "/pause.svg"} alt="Pause" />
         </button>
         <button>
@@ -163,7 +171,7 @@ const Clock = (): JSX.Element => {
             : styles["timer-button-bottom"]
         }
         onClick={initialTimePlayerOne ? startTimerPlayerOne : playerOnePause}
-        disabled={pauseTimerPlayerOne}
+        disabled={pauseTimerPlayerOne || (pauseAllTimer && pauseTimerPlayerTwo)}
       >
         {`${P1hrs.toString().padStart(2, "0")}:${P1mins.toString().padStart(
           2,
