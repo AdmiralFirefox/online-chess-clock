@@ -11,6 +11,8 @@
 
 @mixin timer-button($margin) {
   font-family: "Noto Sans", sans-serif;
+  background: #00000033;
+  color: #ffffffd9;
   border: none;
   width: 95%;
   height: 100%;

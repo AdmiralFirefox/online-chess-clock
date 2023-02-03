@@ -7,7 +7,7 @@ const Clock = (): JSX.Element => {
 
   const [pauseAllTimer, setPauseAllTimer] = useState(true);
   const [pauseTimerPlayerOne, setPauseTimerPlayerOne] = useState(false);
-  const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(true);
+  const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(false);
 
   const playerOneTime = { P1hours: 0, P1minutes: 10, P1seconds: 0 };
   const playerTwoTime = { P2hours: 0, P2minutes: 10, P2seconds: 0 };
@@ -110,7 +110,15 @@ const Clock = (): JSX.Element => {
 
   return (
     <div className={styles["clock-wrapper"]} style={{ height: `${height}px` }}>
-      <button className={styles["timer-button-top"]} onClick={playerTwoPause}>
+      <button
+        className={
+          pauseTimerPlayerOne
+            ? styles["timer-button-top-active"]
+            : styles["timer-button-top"]
+        }
+        onClick={playerTwoPause}
+        disabled={pauseTimerPlayerTwo}
+      >
         {`${P2hrs.toString().padStart(2, "0")}:${P2mins.toString().padStart(
           2,
           "0"
@@ -127,8 +135,13 @@ const Clock = (): JSX.Element => {
       </div>
 
       <button
-        className={styles["timer-button-bottom"]}
+        className={
+          pauseTimerPlayerTwo
+            ? styles["timer-button-bottom-active"]
+            : styles["timer-button-bottom"]
+        }
         onClick={playerOnePause}
+        disabled={pauseTimerPlayerOne}
       >
         {`${P1hrs.toString().padStart(2, "0")}:${P1mins.toString().padStart(
           2,
