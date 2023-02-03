@@ -5,6 +5,9 @@ import styles from "../styles/Clock.module.scss";
 const Clock = (): JSX.Element => {
   const { height } = useWindowSize();
 
+  const [initialTimePlayerOne, setInitialTimePlayerOne] = useState(true);
+  const [initialTimePlayerTwo, setInitialTimePlayerTwo] = useState(true);
+
   const [pauseAllTimer, setPauseAllTimer] = useState(true);
   const [pauseTimerPlayerOne, setPauseTimerPlayerOne] = useState(false);
   const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(false);
@@ -73,20 +76,39 @@ const Clock = (): JSX.Element => {
       parseInt(P2seconds as unknown as string),
     ]);
 
+  // Pause Both Timer
   const allTimerPause = () => {
     setPauseAllTimer(true);
   };
 
+  // Pause Player One Timer
   const playerOnePause = () => {
     setPauseTimerPlayerOne(!pauseTimerPlayerOne);
     setPauseTimerPlayerTwo(false);
     setPauseAllTimer(false);
   };
 
+  // Pause Player Two Timer
   const playerTwoPause = () => {
     setPauseTimerPlayerTwo(!pauseTimerPlayerTwo);
     setPauseTimerPlayerOne(false);
     setPauseAllTimer(false);
+  };
+
+  // Start Timer Player One
+  const startTimerPlayerOne = () => {
+    setInitialTimePlayerOne(false);
+    setInitialTimePlayerTwo(false);
+    setPauseAllTimer(false);
+    setPauseTimerPlayerTwo(true);
+  };
+
+  // Start Timer Player Two
+  const startTimerPlayerTwo = () => {
+    setInitialTimePlayerOne(false);
+    setInitialTimePlayerTwo(false);
+    setPauseAllTimer(false);
+    setPauseTimerPlayerOne(true);
   };
 
   useEffect(() => {
@@ -116,7 +138,7 @@ const Clock = (): JSX.Element => {
             ? styles["timer-button-top-active"]
             : styles["timer-button-top"]
         }
-        onClick={playerTwoPause}
+        onClick={initialTimePlayerTwo ? startTimerPlayerTwo : playerTwoPause}
         disabled={pauseTimerPlayerTwo}
       >
         {`${P2hrs.toString().padStart(2, "0")}:${P2mins.toString().padStart(
@@ -140,7 +162,7 @@ const Clock = (): JSX.Element => {
             ? styles["timer-button-bottom-active"]
             : styles["timer-button-bottom"]
         }
-        onClick={playerOnePause}
+        onClick={initialTimePlayerOne ? startTimerPlayerOne : playerOnePause}
         disabled={pauseTimerPlayerOne}
       >
         {`${P1hrs.toString().padStart(2, "0")}:${P1mins.toString().padStart(
