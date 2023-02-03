@@ -5,6 +5,9 @@ import styles from "../styles/Clock.module.scss";
 const Clock = (): JSX.Element => {
   const { height } = useWindowSize();
 
+  const [pauseTimerPlayerOne, setPauseTimerPlayerOne] = useState(false);
+  const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(true);
+
   const playerOneTime = { P1hours: 0, P1minutes: 10, P1seconds: 0 };
   const playerTwoTime = { P2hours: 0, P2minutes: 10, P2seconds: 0 };
 
@@ -26,6 +29,8 @@ const Clock = (): JSX.Element => {
   const PlayerOneTick = () => {
     if (P1hrs === 0 && P1mins === 0 && P1secs === 0) {
       return;
+    } else if (pauseTimerPlayerOne) {
+      setPauseTimerPlayerTwo(false);
     } else if (P1mins === 0 && P1secs === 0) {
       setTimePlayerOne([P1hrs - 1, 59, 59]);
     } else if (P1secs === 0) {
@@ -38,6 +43,8 @@ const Clock = (): JSX.Element => {
   const PlayerTwoTick = () => {
     if (P2hrs === 0 && P2mins === 0 && P2secs === 0) {
       return;
+    } else if (pauseTimerPlayerTwo) {
+      setPauseTimerPlayerOne(false);
     } else if (P2mins === 0 && P2secs === 0) {
       setTimePlayerTwo([P2hrs - 1, 59, 59]);
     } else if (P2secs === 0) {
@@ -61,6 +68,16 @@ const Clock = (): JSX.Element => {
       parseInt(P2seconds as unknown as string),
     ]);
 
+  const playerOnePause = () => {
+    setPauseTimerPlayerOne(!pauseTimerPlayerOne);
+    setPauseTimerPlayerTwo(false);
+  };
+
+  const playerTwoPause = () => {
+    setPauseTimerPlayerTwo(!pauseTimerPlayerTwo);
+    setPauseTimerPlayerOne(false);
+  };
+
   useEffect(() => {
     const timerIdPlayerOne = setInterval(() => PlayerOneTick(), 1000);
     const timerIdPlayerTwo = setInterval(() => PlayerTwoTick(), 1000);
@@ -82,7 +99,7 @@ const Clock = (): JSX.Element => {
 
   return (
     <div className={styles["clock-wrapper"]} style={{ height: `${height}px` }}>
-      <button className={styles["timer-button-top"]}>
+      <button className={styles["timer-button-top"]} onClick={playerTwoPause}>
         {`${P2hrs.toString().padStart(2, "0")}:${P2mins.toString().padStart(
           2,
           "0"
@@ -98,7 +115,10 @@ const Clock = (): JSX.Element => {
         </button>
       </div>
 
-      <button className={styles["timer-button-bottom"]}>
+      <button
+        className={styles["timer-button-bottom"]}
+        onClick={playerOnePause}
+      >
         {`${P1hrs.toString().padStart(2, "0")}:${P1mins.toString().padStart(
           2,
           "0"
