@@ -1,0 +1,54 @@
+@use "themeprovider/themeprovider" as theme;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+$margin-space: 0.3em;
+
+.clock-background {
+  background: #312e2b;
+  overflow: hidden;
+  position: relative;
+}
+
+.clock-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .timer-button-top {
+    @include theme.timer-button($margin-space $margin-space 0em $margin-space);
+    transform: rotate(180deg);
+  }
+
+  .timer-button-bottom {
+    @include theme.timer-button(0em $margin-space $margin-space $margin-space);
+  }
+
+  .clock-settings {
+    padding: 2.4em;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+
+    button:first-of-type {
+      @include theme.setting-button();
+
+      img {
+        width: 3em;
+        filter: invert(81%) sepia(99%) saturate(0%) hue-rotate(104deg)
+          brightness(113%) contrast(100%);
+      }
+    }
+
+    button:last-of-type {
+      @include theme.setting-button();
+
+      img {
+        width: 3em;
+        filter: invert(81%) sepia(99%) saturate(0%) hue-rotate(104deg)
+          brightness(113%) contrast(100%);
+      }
+    }
+  }
+}

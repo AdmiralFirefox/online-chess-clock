@@ -1,0 +1,26 @@
+@mixin setting-button() {
+  background: none;
+  border: none;
+  outline: none;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+@mixin timer-button($margin) {
+  font-family: "Noto Sans", sans-serif;
+  border: none;
+  width: 95%;
+  height: 100%;
+  margin: $margin;
+  border-radius: 10px;
+  font-size: 3rem;
+  font-weight: bold;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
