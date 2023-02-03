@@ -5,6 +5,7 @@ import styles from "../styles/Clock.module.scss";
 const Clock = (): JSX.Element => {
   const { height } = useWindowSize();
 
+  const [pauseAllTimer, setPauseAllTimer] = useState(true);
   const [pauseTimerPlayerOne, setPauseTimerPlayerOne] = useState(false);
   const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(true);
 
@@ -29,6 +30,8 @@ const Clock = (): JSX.Element => {
   const PlayerOneTick = () => {
     if (P1hrs === 0 && P1mins === 0 && P1secs === 0) {
       return;
+    } else if (pauseAllTimer) {
+      return;
     } else if (pauseTimerPlayerOne) {
       setPauseTimerPlayerTwo(false);
     } else if (P1mins === 0 && P1secs === 0) {
@@ -42,6 +45,8 @@ const Clock = (): JSX.Element => {
 
   const PlayerTwoTick = () => {
     if (P2hrs === 0 && P2mins === 0 && P2secs === 0) {
+      return;
+    } else if (pauseAllTimer) {
       return;
     } else if (pauseTimerPlayerTwo) {
       setPauseTimerPlayerOne(false);
@@ -68,14 +73,20 @@ const Clock = (): JSX.Element => {
       parseInt(P2seconds as unknown as string),
     ]);
 
+  const allTimerPause = () => {
+    setPauseAllTimer(true);
+  };
+
   const playerOnePause = () => {
     setPauseTimerPlayerOne(!pauseTimerPlayerOne);
     setPauseTimerPlayerTwo(false);
+    setPauseAllTimer(false);
   };
 
   const playerTwoPause = () => {
     setPauseTimerPlayerTwo(!pauseTimerPlayerTwo);
     setPauseTimerPlayerOne(false);
+    setPauseAllTimer(false);
   };
 
   useEffect(() => {
@@ -107,8 +118,8 @@ const Clock = (): JSX.Element => {
       </button>
 
       <div className={styles["clock-settings"]}>
-        <button>
-          <img src="/pause.svg" alt="Pause" />
+        <button onClick={allTimerPause}>
+          <img src={pauseAllTimer ? "/play.svg" : "/pause.svg"} alt="Pause" />
         </button>
         <button>
           <img src="/settings.svg" alt="Settings" />
