@@ -134,6 +134,7 @@ const Clock = (): JSX.Element => {
   // Open Settings Modal
   const openSettingsModal = () => {
     setSettingsModal(true);
+    setPauseAllTimer(true);
   };
 
   // Close Settings Moda
