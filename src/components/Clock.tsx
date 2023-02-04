@@ -14,10 +14,10 @@ const Clock = (): JSX.Element => {
   const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(false);
 
   const [playerOneIncrement, setPlayerOneIncrement] = useState(0);
-  const [playerOneIncrementAmount, setPlayerOneIncrementAmount] = useState(3);
+  const [playerOneIncrementAmount, setPlayerOneIncrementAmount] = useState(0);
 
   const [playerTwoIncrement, setPlayerTwoIncrement] = useState(0);
-  const [playerTwoIncrementAmount, setPlayerTwoIncrementAmount] = useState(3);
+  const [playerTwoIncrementAmount, setPlayerTwoIncrementAmount] = useState(0);
 
   const [settingsModal, setSettingsModal] = useState(false);
 
@@ -119,6 +119,7 @@ const Clock = (): JSX.Element => {
     setInitialTimePlayerTwo(false);
     setPauseAllTimer(false);
     setPauseTimerPlayerTwo(true);
+    setPlayerTwoIncrement(0);
   };
 
   // Start Timer Player Two
@@ -127,6 +128,7 @@ const Clock = (): JSX.Element => {
     setInitialTimePlayerTwo(false);
     setPauseAllTimer(false);
     setPauseTimerPlayerOne(true);
+    setPlayerOneIncrement(0);
   };
 
   // Open Settings Modal
@@ -324,7 +326,19 @@ const Clock = (): JSX.Element => {
       </div>
 
       {settingsModal && (
-        <SettingsModal closeSettingsModal={closeSettingsModal} />
+        <SettingsModal
+          closeSettingsModal={closeSettingsModal}
+          setTimePlayerOne={setTimePlayerOne}
+          setTimePlayerTwo={setTimePlayerTwo}
+          setPlayerOneIncrementAmount={setPlayerOneIncrementAmount}
+          setPlayerTwoIncrementAmount={setPlayerTwoIncrementAmount}
+          setSettingsModal={setSettingsModal}
+          setPauseAllTimer={setPauseAllTimer}
+          setPauseTimerPlayerOne={setPauseTimerPlayerOne}
+          setPauseTimerPlayerTwo={setPauseTimerPlayerTwo}
+          setInitialTimePlayerOne={setInitialTimePlayerOne}
+          setInitialTimePlayerTwo={setInitialTimePlayerTwo}
+        />
       )}
     </>
   );
