@@ -1,0 +1,77 @@
+@use "./themeprovider/themeprovider" as theme;
+
+.settings-modal-wrapper {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .settings-modal-content {
+    background: rgba(49, 46, 43, 0.35);
+    backdrop-filter: blur(17px);
+    -webkit-backdrop-filter: blur(17px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    width: min(40em, 100%);
+    padding: 1em 1.2em 3.3em 1.2em;
+    overflow: auto;
+
+    // Close Section
+    .close-section {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        @include theme.setting-button();
+
+        img {
+          width: 3.5em;
+          filter: invert(81%) sepia(99%) saturate(0%) hue-rotate(104deg)
+            brightness(113%) contrast(100%);
+        }
+      }
+    }
+
+    // Bullet Section
+    .bullet-section {
+      @include theme.modal-section();
+      margin-top: 0.5em;
+
+      .bullet-section-buttons {
+        @include theme.modal-section-buttons();
+      }
+    }
+
+    // Blitz Section
+    .blitz-section {
+      @include theme.modal-section();
+      margin-top: 2em;
+
+      .blitz-section-buttons {
+        @include theme.modal-section-buttons();
+      }
+    }
+
+    // Rapid Section
+    .rapid-section {
+      @include theme.modal-section();
+      margin-top: 2em;
+
+      .rapid-section-buttons {
+        @include theme.modal-section-buttons();
+      }
+    }
+
+    // Classical Section
+    .classical-section {
+      @include theme.modal-section();
+      margin-top: 2em;
+
+      .classical-section-buttons {
+        @include theme.modal-section-buttons();
+      }
+    }
+  }
+}

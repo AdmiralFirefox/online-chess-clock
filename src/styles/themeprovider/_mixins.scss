@@ -2,6 +2,7 @@
   background: none;
   border: none;
   outline: none;
+  cursor: pointer;
 
   &:focus {
     border: none;
@@ -24,5 +25,34 @@
   &:focus {
     border: none;
     outline: none;
+  }
+}
+
+@mixin modal-section() {
+  h1 {
+    color: #ffffffd9;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 2rem;
+  }
+}
+
+@mixin modal-section-buttons() {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  button {
+    font-family: "Noto Sans", sans-serif;
+    color: #ffffffd9;
+    font-size: 1.2rem;
+    margin: 1em 1em 0em 0em;
+    border-radius: 5px;
+    padding: 1em;
+    outline: none;
+    cursor: pointer;
+    background: rgba(139, 137, 135, 0.4);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 }

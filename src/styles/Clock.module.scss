@@ -44,6 +44,7 @@ $margin-space: 0.3em;
 
     .play-pause-icon-disabled {
       @include theme.setting-button();
+      cursor: not-allowed;
 
       img {
         width: 3em;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import SettingsModal from "./SettingsModal";
 import useWindowSize from "../hooks/useWindowSize";
 import styles from "../styles/Clock.module.scss";
 
@@ -17,6 +18,8 @@ const Clock = (): JSX.Element => {
 
   const [playerTwoIncrement, setPlayerTwoIncrement] = useState(0);
   const [playerTwoIncrementAmount, setPlayerTwoIncrementAmount] = useState(3);
+
+  const [settingsModal, setSettingsModal] = useState(false);
 
   const playerOneTime = { P1hours: 0, P1minutes: 10, P1seconds: 0 };
   const playerTwoTime = { P2hours: 0, P2minutes: 10, P2seconds: 0 };
@@ -124,6 +127,16 @@ const Clock = (): JSX.Element => {
     setInitialTimePlayerTwo(false);
     setPauseAllTimer(false);
     setPauseTimerPlayerOne(true);
+  };
+
+  // Open Settings Modal
+  const openSettingsModal = () => {
+    setSettingsModal(true);
+  };
+
+  // Close Settings Moda
+  const closeSettingsModal = () => {
+    setSettingsModal(false);
   };
 
   useEffect(() => {
@@ -250,54 +263,70 @@ const Clock = (): JSX.Element => {
   }, []);
 
   return (
-    <div className={styles["clock-wrapper"]} style={{ height: `${height}px` }}>
-      <button
-        className={
-          pauseTimerPlayerOne
-            ? styles["timer-button-top-active"]
-            : styles["timer-button-top"]
-        }
-        onClick={initialTimePlayerTwo ? startTimerPlayerTwo : playerTwoPause}
-        disabled={pauseTimerPlayerTwo || (pauseAllTimer && pauseTimerPlayerOne)}
+    <>
+      <div
+        className={styles["clock-wrapper"]}
+        style={{ height: `${height}px` }}
       >
-        {`${P2hrs.toString().padStart(2, "0")}:${P2mins.toString().padStart(
-          2,
-          "0"
-        )}:${P2secs.toString().padStart(2, "0")}`}
-      </button>
-
-      <div className={styles["clock-settings"]}>
         <button
-          onClick={pauseAllTimer ? allTimerResume : allTimerPause}
-          disabled={initialTimePlayerOne || initialTimePlayerTwo}
           className={
-            initialTimePlayerOne || initialTimePlayerTwo
-              ? styles["play-pause-icon-disabled"]
-              : styles["play-pause-icon"]
+            pauseTimerPlayerOne
+              ? styles["timer-button-top-active"]
+              : styles["timer-button-top"]
+          }
+          onClick={initialTimePlayerTwo ? startTimerPlayerTwo : playerTwoPause}
+          disabled={
+            pauseTimerPlayerTwo || (pauseAllTimer && pauseTimerPlayerOne)
           }
         >
-          <img src={pauseAllTimer ? "/play.svg" : "/pause.svg"} alt="Pause" />
+          {`${P2hrs.toString().padStart(2, "0")}:${P2mins.toString().padStart(
+            2,
+            "0"
+          )}:${P2secs.toString().padStart(2, "0")}`}
         </button>
-        <button className={styles["settings-icon"]}>
-          <img src="/settings.svg" alt="Settings" />
+
+        <div className={styles["clock-settings"]}>
+          <button
+            onClick={pauseAllTimer ? allTimerResume : allTimerPause}
+            disabled={initialTimePlayerOne || initialTimePlayerTwo}
+            className={
+              initialTimePlayerOne || initialTimePlayerTwo
+                ? styles["play-pause-icon-disabled"]
+                : styles["play-pause-icon"]
+            }
+          >
+            <img src={pauseAllTimer ? "/play.svg" : "/pause.svg"} alt="Pause" />
+          </button>
+          <button
+            className={styles["settings-icon"]}
+            onClick={openSettingsModal}
+          >
+            <img src="/settings.svg" alt="Settings" />
+          </button>
+        </div>
+
+        <button
+          className={
+            pauseTimerPlayerTwo
+              ? styles["timer-button-bottom-active"]
+              : styles["timer-button-bottom"]
+          }
+          onClick={initialTimePlayerOne ? startTimerPlayerOne : playerOnePause}
+          disabled={
+            pauseTimerPlayerOne || (pauseAllTimer && pauseTimerPlayerTwo)
+          }
+        >
+          {`${P1hrs.toString().padStart(2, "0")}:${P1mins.toString().padStart(
+            2,
+            "0"
+          )}:${P1secs.toString().padStart(2, "0")}`}
         </button>
       </div>
 
-      <button
-        className={
-          pauseTimerPlayerTwo
-            ? styles["timer-button-bottom-active"]
-            : styles["timer-button-bottom"]
-        }
-        onClick={initialTimePlayerOne ? startTimerPlayerOne : playerOnePause}
-        disabled={pauseTimerPlayerOne || (pauseAllTimer && pauseTimerPlayerTwo)}
-      >
-        {`${P1hrs.toString().padStart(2, "0")}:${P1mins.toString().padStart(
-          2,
-          "0"
-        )}:${P1secs.toString().padStart(2, "0")}`}
-      </button>
-    </div>
+      {settingsModal && (
+        <SettingsModal closeSettingsModal={closeSettingsModal} />
+      )}
+    </>
   );
 };
 
