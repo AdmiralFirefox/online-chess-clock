@@ -12,6 +12,12 @@ const Clock = (): JSX.Element => {
   const [pauseTimerPlayerOne, setPauseTimerPlayerOne] = useState(false);
   const [pauseTimerPlayerTwo, setPauseTimerPlayerTwo] = useState(false);
 
+  const [playerOneIncrement, setPlayerOneIncrement] = useState(0);
+  const [playerOneIncrementAmount, setPlayerOneIncrementAmount] = useState(3);
+
+  const [playerTwoIncrement, setPlayerTwoIncrement] = useState(0);
+  const [playerTwoIncrementAmount, setPlayerTwoIncrementAmount] = useState(3);
+
   const playerOneTime = { P1hours: 0, P1minutes: 10, P1seconds: 0 };
   const playerTwoTime = { P2hours: 0, P2minutes: 10, P2seconds: 0 };
 
@@ -91,6 +97,8 @@ const Clock = (): JSX.Element => {
     setPauseTimerPlayerOne(!pauseTimerPlayerOne);
     setPauseTimerPlayerTwo(false);
     setPauseAllTimer(false);
+    setPlayerOneIncrement(playerOneIncrementAmount);
+    setPlayerTwoIncrement(0);
   };
 
   // Pause Player Two Timer
@@ -98,6 +106,8 @@ const Clock = (): JSX.Element => {
     setPauseTimerPlayerTwo(!pauseTimerPlayerTwo);
     setPauseTimerPlayerOne(false);
     setPauseAllTimer(false);
+    setPlayerOneIncrement(0);
+    setPlayerTwoIncrement(playerTwoIncrementAmount);
   };
 
   // Start Timer Player One
@@ -125,6 +135,110 @@ const Clock = (): JSX.Element => {
       clearInterval(timerIdPlayerTwo);
     };
   });
+
+  // Player One Increment
+  useEffect(() => {
+    if (pauseTimerPlayerOne) {
+      setTimePlayerOne([P1hrs, P1mins, P1secs + playerOneIncrement]);
+    }
+
+    const lastDigit1Str = String(P1secs).slice(-1);
+    const lastDigit1Num = Number(lastDigit1Str);
+
+    for (let i = 0; i <= 100; i++) {
+      if (i === playerOneIncrement) {
+        if (P1secs >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
+          setTimePlayerOne([
+            P1hrs,
+            P1mins + 1,
+            Math.abs(lastDigit1Num + i - 10),
+          ]);
+        }
+
+        if (P1mins >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
+          setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
+        }
+
+        if (playerOneIncrement >= 12) {
+          if (P1secs >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
+            setTimePlayerOne([
+              P1hrs,
+              P1mins + 1,
+              Math.abs(lastDigit1Num + i - 20),
+            ]);
+          }
+
+          if (P1secs >= 50 && playerOneIncrement !== 0) {
+            setTimePlayerOne([
+              P1hrs,
+              P1mins + 1,
+              Math.abs(lastDigit1Num + i - 10),
+            ]);
+          }
+
+          if (P1mins >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
+            setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 20)]);
+          }
+
+          if (P1mins >= 50 && playerOneIncrement !== 0) {
+            setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
+          }
+        }
+      }
+    }
+  }, [pauseTimerPlayerOne, playerOneIncrement]);
+
+  // Player Two Increment
+  useEffect(() => {
+    if (pauseTimerPlayerTwo) {
+      setTimePlayerTwo([P2hrs, P2mins, P2secs + playerTwoIncrement]);
+    }
+
+    const lastDigit1Str = String(P2secs).slice(-1);
+    const lastDigit1Num = Number(lastDigit1Str);
+
+    for (let i = 0; i <= 100; i++) {
+      if (i === playerTwoIncrement) {
+        if (P2secs >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
+          setTimePlayerTwo([
+            P2hrs,
+            P2mins + 1,
+            Math.abs(lastDigit1Num + i - 10),
+          ]);
+        }
+
+        if (P2mins >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
+          setTimePlayerTwo([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
+        }
+
+        if (playerTwoIncrement >= 12) {
+          if (P2secs >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
+            setTimePlayerTwo([
+              P2hrs,
+              P2mins + 1,
+              Math.abs(lastDigit1Num + i - 20),
+            ]);
+          }
+
+          if (P2secs >= 50 && playerTwoIncrement !== 0) {
+            setTimePlayerTwo([
+              P2hrs,
+              P2mins + 1,
+              Math.abs(lastDigit1Num + i - 10),
+            ]);
+          }
+
+          if (P2mins >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
+            setTimePlayerTwo([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 20)]);
+          }
+
+          if (P2mins >= 50 && playerTwoIncrement !== 0) {
+            setTimePlayerTwo([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
+          }
+        }
+      }
+    }
+  }, [pauseTimerPlayerTwo, playerTwoIncrement]);
 
   useEffect(() => {
     document.getElementsByTagName("body")[0].className =
