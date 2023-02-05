@@ -1,8 +1,17 @@
+import { useState } from "react";
 import useWindowSize from "../hooks/useWindowSize";
+import usePlayerTime from "../hooks/usePlayerTime";
 import styles from "../styles/SettingsModal.module.scss";
 
 interface SettingsModalProps {
   closeSettingsModal: () => void;
+  playerOneIncrementAmount: number;
+  P1hrs: number;
+  P1mins: number;
+  P1secs: number;
+  P2hrs: number;
+  P2mins: number;
+  P2secs: number;
   setTimePlayerOne: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
@@ -21,6 +30,13 @@ interface SettingsModalProps {
 
 const SettingsModal = ({
   closeSettingsModal,
+  playerOneIncrementAmount,
+  P1hrs,
+  P1mins,
+  P1secs,
+  P2hrs,
+  P2mins,
+  P2secs,
   setTimePlayerOne,
   setTimePlayerTwo,
   setPlayerOneIncrementAmount,
@@ -33,6 +49,30 @@ const SettingsModal = ({
   setInitialTimePlayerTwo,
 }: SettingsModalProps): JSX.Element => {
   const { height } = useWindowSize();
+
+  const [playerOneInputNotChanged, setPlayerOneInputNotChanged] =
+    useState(true);
+  const [playerTwoInputNotChanged, setPlayerTwoInputNotChanged] =
+    useState(true);
+  const [incrementInputNotChanged, setIncrementInputNotChanged] =
+    useState(true);
+
+  const {
+    playerOneHours,
+    setPlayerOneHours,
+    playerOneMinutes,
+    setPlayerOneMinutes,
+    playerOneSeconds,
+    setPlayerOneSeconds,
+    playerTwoHours,
+    setPlayerTwoHours,
+    playerTwoMinutes,
+    setPlayerTwoMinutes,
+    playerTwoSeconds,
+    setPlayerTwoSeconds,
+    customIncrement,
+    setCustomIncrement,
+  } = usePlayerTime();
 
   // Set Game Mode to Bullet One
   const bulletOne = () => {
@@ -188,6 +228,32 @@ const SettingsModal = ({
     setInitialTimePlayerTwo(true);
   };
 
+  const handleEditInputPlayerOneSubmit = () => {
+    setTimePlayerOne([playerOneHours, playerOneMinutes, playerOneSeconds]);
+    setPauseAllTimer(true);
+    setPauseTimerPlayerOne(false);
+    setPauseTimerPlayerTwo(false);
+    setInitialTimePlayerOne(true);
+    setInitialTimePlayerTwo(true);
+    setPlayerOneInputNotChanged(true);
+  };
+
+  const handleEditInputPlayerTwoSubmit = () => {
+    setTimePlayerTwo([playerTwoHours, playerTwoMinutes, playerTwoSeconds]);
+    setPauseAllTimer(true);
+    setPauseTimerPlayerOne(false);
+    setPauseTimerPlayerTwo(false);
+    setInitialTimePlayerOne(true);
+    setInitialTimePlayerTwo(true);
+    setPlayerTwoInputNotChanged(true);
+  };
+
+  const handleEditIncrementSubmit = () => {
+    setPlayerTwoIncrementAmount(customIncrement);
+    setPlayerOneIncrementAmount(customIncrement);
+    setIncrementInputNotChanged(true);
+  };
+
   return (
     <div className={styles["settings-modal-wrapper"]}>
       <div
@@ -233,6 +299,100 @@ const SettingsModal = ({
             <button onClick={classicalOne}>30 | 0</button>
             <button onClick={classicalTwo}>30 | 20</button>
           </div>
+        </div>
+
+        <div>
+          <h1>Custom</h1>
+
+          <h2>Player One</h2>
+          <input
+            type="text"
+            defaultValue={P1hrs}
+            onChange={(e) => {
+              setPlayerOneHours(Number(e.target.value));
+              setPlayerOneInputNotChanged(false);
+            }}
+          />
+          <input
+            type="text"
+            defaultValue={P1mins}
+            onChange={(e) => {
+              setPlayerOneMinutes(Number(e.target.value));
+              setPlayerOneInputNotChanged(false);
+            }}
+          />
+          <input
+            type="text"
+            defaultValue={P1secs}
+            onChange={(e) => {
+              setPlayerOneSeconds(Number(e.target.value));
+              setPlayerOneInputNotChanged(false);
+            }}
+          />
+          <button
+            onClick={handleEditInputPlayerOneSubmit}
+            disabled={
+              playerOneInputNotChanged ||
+              (playerOneHours === 0 &&
+                playerOneMinutes === 0 &&
+                playerOneSeconds === 0)
+            }
+          >
+            Save
+          </button>
+
+          <h2>Player Two</h2>
+          <input
+            type="text"
+            defaultValue={P2hrs}
+            onChange={(e) => {
+              setPlayerTwoHours(Number(e.target.value));
+              setPlayerTwoInputNotChanged(false);
+            }}
+          />
+          <input
+            type="text"
+            defaultValue={P2mins}
+            onChange={(e) => {
+              setPlayerTwoMinutes(Number(e.target.value));
+              setPlayerTwoInputNotChanged(false);
+            }}
+          />
+          <input
+            type="text"
+            defaultValue={P2secs}
+            onChange={(e) => {
+              setPlayerTwoSeconds(Number(e.target.value));
+              setPlayerTwoInputNotChanged(false);
+            }}
+          />
+          <button
+            onClick={handleEditInputPlayerTwoSubmit}
+            disabled={
+              playerTwoInputNotChanged ||
+              (playerTwoHours === 0 &&
+                playerTwoMinutes === 0 &&
+                playerTwoSeconds === 0)
+            }
+          >
+            Save
+          </button>
+
+          <h2>Increment Time</h2>
+          <input
+            type="text"
+            defaultValue={playerOneIncrementAmount}
+            onChange={(e) => {
+              setCustomIncrement(Number(e.target.value));
+              setIncrementInputNotChanged(false);
+            }}
+          />
+          <button
+            onClick={handleEditIncrementSubmit}
+            disabled={incrementInputNotChanged}
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
