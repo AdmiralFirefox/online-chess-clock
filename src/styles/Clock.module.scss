@@ -26,6 +26,12 @@ $margin-space: 0.3em;
     background: #7fa650;
   }
 
+  .timer-button-top-lost {
+    @include theme.timer-button(0em $margin-space $margin-space $margin-space);
+    transform: rotate(180deg);
+    background: #b23330;
+  }
+
   .timer-button-bottom {
     @include theme.timer-button(0em $margin-space $margin-space $margin-space);
   }
@@ -33,6 +39,11 @@ $margin-space: 0.3em;
   .timer-button-bottom-active {
     @include theme.timer-button(0em $margin-space $margin-space $margin-space);
     background: #7fa650;
+  }
+
+  .timer-button-bottom-lost {
+    @include theme.timer-button(0em $margin-space $margin-space $margin-space);
+    background: #b23330;
   }
 
   .clock-settings {
