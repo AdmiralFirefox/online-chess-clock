@@ -1,17 +1,10 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 import usePlayerTime from "../hooks/usePlayerTime";
 import styles from "../styles/SettingsModal.module.scss";
 
 interface SettingsModalProps {
   closeSettingsModal: () => void;
-  playerOneIncrementAmount: number;
-  P1hrs: number;
-  P1mins: number;
-  P1secs: number;
-  P2hrs: number;
-  P2mins: number;
-  P2secs: number;
   setTimePlayerOne: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
@@ -30,13 +23,6 @@ interface SettingsModalProps {
 
 const SettingsModal = ({
   closeSettingsModal,
-  playerOneIncrementAmount,
-  P1hrs,
-  P1mins,
-  P1secs,
-  P2hrs,
-  P2mins,
-  P2secs,
   setTimePlayerOne,
   setTimePlayerTwo,
   setPlayerOneIncrementAmount,
@@ -228,6 +214,105 @@ const SettingsModal = ({
     setInitialTimePlayerTwo(true);
   };
 
+  // Handle Player One Hours Change
+  const handlePlayerOneHoursChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setPlayerOneHours(numValue);
+    setPlayerOneInputNotChanged(false);
+  };
+
+  // Handle Player One Minutes Change
+  const handlePlayerOneMinutesChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setPlayerOneMinutes(numValue);
+    setPlayerOneInputNotChanged(false);
+  };
+
+  // Handle Player One Seconds Change
+  const handlePlayerOneSecondsChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setPlayerOneSeconds(numValue);
+    setPlayerOneInputNotChanged(false);
+  };
+
+  // Handle Player Two Hours Change
+  const handlePlayerTwoHoursChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setPlayerTwoHours(numValue);
+    setPlayerTwoInputNotChanged(false);
+  };
+
+  // Handle Player Two Minutes Change
+  const handlePlayerTwoMinutesChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setPlayerTwoMinutes(numValue);
+    setPlayerTwoInputNotChanged(false);
+  };
+
+  // Handle Player Two Seconds Change
+  const handlePlayerTwoSecondsChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setPlayerTwoSeconds(numValue);
+    setPlayerTwoInputNotChanged(false);
+  };
+
+  // Handle Increment Change
+  const handleIncrementChange = (e: ChangeEvent<HTMLInputElement>) => {
+    let { value, min, max } = e.target;
+    let numValue = Number(value);
+
+    numValue = Math.max(
+      Number(min),
+      Math.min(Number(max), Number(value.replace(/\D/, "")))
+    );
+
+    setCustomIncrement(numValue);
+    setIncrementInputNotChanged(false);
+  };
+
+  // Handle Player One Input Submit
   const handleEditInputPlayerOneSubmit = () => {
     setTimePlayerOne([playerOneHours, playerOneMinutes, playerOneSeconds]);
     setPauseAllTimer(true);
@@ -238,6 +323,7 @@ const SettingsModal = ({
     setPlayerOneInputNotChanged(true);
   };
 
+  // Handle Player Two Input Submit
   const handleEditInputPlayerTwoSubmit = () => {
     setTimePlayerTwo([playerTwoHours, playerTwoMinutes, playerTwoSeconds]);
     setPauseAllTimer(true);
@@ -307,27 +393,24 @@ const SettingsModal = ({
           <h2>Player One</h2>
           <input
             type="text"
-            defaultValue={P1hrs}
-            onChange={(e) => {
-              setPlayerOneHours(Number(e.target.value));
-              setPlayerOneInputNotChanged(false);
-            }}
+            value={playerOneHours}
+            onChange={handlePlayerOneHoursChange}
+            min="0"
+            max="59"
           />
           <input
             type="text"
-            defaultValue={P1mins}
-            onChange={(e) => {
-              setPlayerOneMinutes(Number(e.target.value));
-              setPlayerOneInputNotChanged(false);
-            }}
+            value={playerOneMinutes}
+            onChange={handlePlayerOneMinutesChange}
+            min="0"
+            max="59"
           />
           <input
             type="text"
-            defaultValue={P1secs}
-            onChange={(e) => {
-              setPlayerOneSeconds(Number(e.target.value));
-              setPlayerOneInputNotChanged(false);
-            }}
+            value={playerOneSeconds}
+            onChange={handlePlayerOneSecondsChange}
+            min="0"
+            max="59"
           />
           <button
             onClick={handleEditInputPlayerOneSubmit}
@@ -344,27 +427,24 @@ const SettingsModal = ({
           <h2>Player Two</h2>
           <input
             type="text"
-            defaultValue={P2hrs}
-            onChange={(e) => {
-              setPlayerTwoHours(Number(e.target.value));
-              setPlayerTwoInputNotChanged(false);
-            }}
+            value={playerTwoHours}
+            onChange={handlePlayerTwoHoursChange}
+            min="0"
+            max="59"
           />
           <input
             type="text"
-            defaultValue={P2mins}
-            onChange={(e) => {
-              setPlayerTwoMinutes(Number(e.target.value));
-              setPlayerTwoInputNotChanged(false);
-            }}
+            value={playerTwoMinutes}
+            onChange={handlePlayerTwoMinutesChange}
+            min="0"
+            max="59"
           />
           <input
             type="text"
-            defaultValue={P2secs}
-            onChange={(e) => {
-              setPlayerTwoSeconds(Number(e.target.value));
-              setPlayerTwoInputNotChanged(false);
-            }}
+            value={playerTwoSeconds}
+            onChange={handlePlayerTwoSecondsChange}
+            min="0"
+            max="59"
           />
           <button
             onClick={handleEditInputPlayerTwoSubmit}
@@ -381,11 +461,10 @@ const SettingsModal = ({
           <h2>Increment Time</h2>
           <input
             type="text"
-            defaultValue={playerOneIncrementAmount}
-            onChange={(e) => {
-              setCustomIncrement(Number(e.target.value));
-              setIncrementInputNotChanged(false);
-            }}
+            value={customIncrement}
+            onChange={handleIncrementChange}
+            min="0"
+            max="20"
           />
           <button
             onClick={handleEditIncrementSubmit}

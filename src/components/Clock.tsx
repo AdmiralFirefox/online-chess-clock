@@ -329,13 +329,6 @@ const Clock = (): JSX.Element => {
       {settingsModal && (
         <SettingsModal
           closeSettingsModal={closeSettingsModal}
-          playerOneIncrementAmount={playerOneIncrementAmount}
-          P1hrs={P1hrs}
-          P1mins={P1mins}
-          P1secs={P1secs}
-          P2hrs={P2hrs}
-          P2mins={P2mins}
-          P2secs={P2secs}
           setTimePlayerOne={setTimePlayerOne}
           setTimePlayerTwo={setTimePlayerTwo}
           setPlayerOneIncrementAmount={setPlayerOneIncrementAmount}
