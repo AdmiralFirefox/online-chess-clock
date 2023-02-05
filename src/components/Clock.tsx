@@ -1,10 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SettingsModal from "./SettingsModal";
 import useWindowSize from "../hooks/useWindowSize";
 import styles from "../styles/Clock.module.scss";
 
 const Clock = (): JSX.Element => {
   const { height } = useWindowSize();
+
+  const chessClockAudioOne = useRef<HTMLAudioElement | undefined>(
+    typeof Audio !== "undefined" ? new Audio("/chess-clock-one.mp3") : undefined
+  );
+
+  const chessClockAudioTwo = useRef<HTMLAudioElement | undefined>(
+    typeof Audio !== "undefined" ? new Audio("/chess-clock-two.mp3") : undefined
+  );
 
   const [initialTimePlayerOne, setInitialTimePlayerOne] = useState(true);
   const [initialTimePlayerTwo, setInitialTimePlayerTwo] = useState(true);
@@ -75,28 +83,16 @@ const Clock = (): JSX.Element => {
     }
   };
 
-  const ResetPlayerOne = () =>
-    setTimePlayerOne([
-      parseInt(P1hours as unknown as string),
-      parseInt(P1minutes as unknown as string),
-      parseInt(P1seconds as unknown as string),
-    ]);
-
-  const ResetPlayerTwo = () =>
-    setTimePlayerOne([
-      parseInt(P2hours as unknown as string),
-      parseInt(P2minutes as unknown as string),
-      parseInt(P2seconds as unknown as string),
-    ]);
-
   // Pause Both Timer
   const allTimerPause = () => {
     setPauseAllTimer(true);
+    chessClockAudioTwo.current?.play();
   };
 
   // Resume Both Timer
   const allTimerResume = () => {
     setPauseAllTimer(false);
+    chessClockAudioTwo.current?.play();
   };
 
   // Pause Player One Timer
@@ -106,6 +102,7 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPlayerOneIncrement(playerOneIncrementAmount);
     setPlayerTwoIncrement(0);
+    chessClockAudioOne.current?.play();
   };
 
   // Pause Player Two Timer
@@ -115,6 +112,7 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPlayerOneIncrement(0);
     setPlayerTwoIncrement(playerTwoIncrementAmount);
+    chessClockAudioOne.current?.play();
   };
 
   // Start Timer Player One
@@ -124,6 +122,7 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPauseTimerPlayerTwo(true);
     setPlayerTwoIncrement(0);
+    chessClockAudioOne.current?.play();
   };
 
   // Start Timer Player Two
@@ -133,6 +132,7 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPauseTimerPlayerOne(true);
     setPlayerOneIncrement(0);
+    chessClockAudioOne.current?.play();
   };
 
   // Open Settings Modal
