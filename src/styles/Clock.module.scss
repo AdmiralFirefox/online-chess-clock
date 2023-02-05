@@ -27,7 +27,7 @@ $margin-space: 0.3em;
   }
 
   .timer-button-top-lost {
-    @include theme.timer-button(0em $margin-space $margin-space $margin-space);
+    @include theme.timer-button($margin-space $margin-space 0em $margin-space);
     transform: rotate(180deg);
     background: #b23330;
   }
