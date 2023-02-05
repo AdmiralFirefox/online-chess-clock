@@ -387,91 +387,121 @@ const SettingsModal = ({
           </div>
         </div>
 
-        <div>
-          <h1>Custom</h1>
+        <div className={styles["custom-section"]}>
+          <h1 className={styles["custom-title"]}>Custom</h1>
 
-          <h2>Player One</h2>
-          <input
-            type="text"
-            value={playerOneHours}
-            onChange={handlePlayerOneHoursChange}
-            min="0"
-            max="59"
-          />
-          <input
-            type="text"
-            value={playerOneMinutes}
-            onChange={handlePlayerOneMinutesChange}
-            min="0"
-            max="59"
-          />
-          <input
-            type="text"
-            value={playerOneSeconds}
-            onChange={handlePlayerOneSecondsChange}
-            min="0"
-            max="59"
-          />
-          <button
-            onClick={handleEditInputPlayerOneSubmit}
-            disabled={
-              playerOneInputNotChanged ||
-              (playerOneHours === 0 &&
-                playerOneMinutes === 0 &&
-                playerOneSeconds === 0)
-            }
-          >
-            Save
-          </button>
+          <div className={styles["custom-player-one-section"]}>
+            <h2>Player One</h2>
+            <div className={styles["custom-player-one-inputs"]}>
+              <div>
+                <input
+                  type="text"
+                  value={playerOneHours}
+                  onChange={handlePlayerOneHoursChange}
+                  min="0"
+                  max="59"
+                />
+                <p>Hours</p>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  value={playerOneMinutes}
+                  onChange={handlePlayerOneMinutesChange}
+                  min="0"
+                  max="59"
+                />
+                <p>Minutes</p>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  value={playerOneSeconds}
+                  onChange={handlePlayerOneSecondsChange}
+                  min="0"
+                  max="59"
+                />
+                <p>Seconds</p>
+              </div>
+              <button
+                onClick={handleEditInputPlayerOneSubmit}
+                disabled={
+                  playerOneInputNotChanged ||
+                  (playerOneHours === 0 &&
+                    playerOneMinutes === 0 &&
+                    playerOneSeconds === 0)
+                }
+              >
+                Save
+              </button>
+            </div>
+          </div>
 
-          <h2>Player Two</h2>
-          <input
-            type="text"
-            value={playerTwoHours}
-            onChange={handlePlayerTwoHoursChange}
-            min="0"
-            max="59"
-          />
-          <input
-            type="text"
-            value={playerTwoMinutes}
-            onChange={handlePlayerTwoMinutesChange}
-            min="0"
-            max="59"
-          />
-          <input
-            type="text"
-            value={playerTwoSeconds}
-            onChange={handlePlayerTwoSecondsChange}
-            min="0"
-            max="59"
-          />
-          <button
-            onClick={handleEditInputPlayerTwoSubmit}
-            disabled={
-              playerTwoInputNotChanged ||
-              (playerTwoHours === 0 &&
-                playerTwoMinutes === 0 &&
-                playerTwoSeconds === 0)
-            }
-          >
-            Save
-          </button>
+          <div className={styles["custom-player-two-section"]}>
+            <h2>Player Two</h2>
+            <div className={styles["custom-player-two-inputs"]}>
+              <div>
+                <input
+                  type="text"
+                  value={playerTwoHours}
+                  onChange={handlePlayerTwoHoursChange}
+                  min="0"
+                  max="59"
+                />
+                <p>Hours</p>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  value={playerTwoMinutes}
+                  onChange={handlePlayerTwoMinutesChange}
+                  min="0"
+                  max="59"
+                />
+                <p>Minutes</p>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  value={playerTwoSeconds}
+                  onChange={handlePlayerTwoSecondsChange}
+                  min="0"
+                  max="59"
+                />
+                <p>Seconds</p>
+              </div>
+              <button
+                onClick={handleEditInputPlayerTwoSubmit}
+                disabled={
+                  playerTwoInputNotChanged ||
+                  (playerTwoHours === 0 &&
+                    playerTwoMinutes === 0 &&
+                    playerTwoSeconds === 0)
+                }
+              >
+                Save
+              </button>
+            </div>
+          </div>
 
-          <h2>Increment Time</h2>
-          <input
-            type="text"
-            value={customIncrement}
-            onChange={handleIncrementChange}
-            min="0"
-            max="30"
-          />
-          <button
-            onClick={handleEditIncrementSubmit}
-            disabled={incrementInputNotChanged}
-          >
-            Save
-          </button>
+          <div className={styles["custom-increment-section"]}>
+            <h2>Increment Time</h2>
+            <div className={styles["custom-increment-form"]}>
+              <input
+                type="text"
+                value={customIncrement}
+                onChange={handleIncrementChange}
+                min="0"
+                max="30"
+              />
+              <button
+                onClick={handleEditIncrementSubmit}
+                disabled={incrementInputNotChanged}
+              >
+                Save
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

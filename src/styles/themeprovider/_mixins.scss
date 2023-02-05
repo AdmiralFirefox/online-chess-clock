@@ -56,3 +56,62 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
 }
+
+@mixin custom-player-inputs() {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  div {
+    margin: 1em 0.9em 0em 0em;
+
+    input {
+      background: rgba(139, 137, 135, 0.4);
+      backdrop-filter: blur(13px);
+      -webkit-backdrop-filter: blur(13px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-family: "Noto Sans", sans-serif;
+      color: #ffffffb8;
+      padding: 0.3em 0.3em;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 700;
+      width: 5em;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    p {
+      color: #ffffffd9;
+      font-family: "Noto Sans", sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 0.3em;
+    }
+  }
+
+  button {
+    align-self: flex-start;
+    font-family: "Noto Sans", sans-serif;
+    margin: 1em 0.9em 0em 0em;
+    padding: 0.5em 0.8em;
+    border-radius: 5px;
+    border: none;
+    background: #7fa650;
+    color: #ffffffd9;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.1s ease-in-out, background 0.1s ease-in-out;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:disabled {
+      background: #8b8987;
+      color: #312e2b;
+    }
+  }
+}
