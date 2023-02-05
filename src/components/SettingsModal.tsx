@@ -464,7 +464,7 @@ const SettingsModal = ({
             value={customIncrement}
             onChange={handleIncrementChange}
             min="0"
-            max="20"
+            max="30"
           />
           <button
             onClick={handleEditIncrementSubmit}
