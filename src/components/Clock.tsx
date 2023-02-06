@@ -160,76 +160,13 @@ const Clock = (): JSX.Element => {
   useEffect(() => {
     if (pauseTimerPlayerOne) {
       setTimePlayerOne([P1hrs, P1mins, P1secs + playerOneIncrement]);
-    }
 
-    const lastDigit1Str = String(P1secs).slice(-1);
-    const lastDigit1Num = Number(lastDigit1Str);
+      if (P1secs >= 60 - playerOneIncrement) {
+        setTimePlayerOne([P1hrs, P1mins + 1, P1secs - 60 + playerOneIncrement]);
+      }
 
-    for (let i = 0; i <= 100; i++) {
-      if (i === playerOneIncrement) {
-        if (P1secs >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
-          setTimePlayerOne([
-            P1hrs,
-            P1mins + 1,
-            Math.abs(lastDigit1Num + i - 10),
-          ]);
-        }
-
-        if (P1mins >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
-          setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
-        }
-
-        if (playerOneIncrement >= 12) {
-          if (P1secs >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
-            setTimePlayerOne([
-              P1hrs,
-              P1mins + 1,
-              Math.abs(lastDigit1Num + i - 20),
-            ]);
-          }
-
-          if (P1secs >= 50 && playerOneIncrement !== 0) {
-            setTimePlayerOne([
-              P1hrs,
-              P1mins + 1,
-              Math.abs(lastDigit1Num + i - 10),
-            ]);
-          }
-
-          if (P1mins >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
-            setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 20)]);
-          }
-
-          if (P1mins >= 50 && playerOneIncrement !== 0) {
-            setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
-          }
-        }
-
-        if (playerOneIncrement >= 25) {
-          if (P1secs >= 50 && playerOneIncrement !== 0) {
-            setTimePlayerOne([
-              P1hrs,
-              P1mins + 1,
-              Math.abs(lastDigit1Num + i - 10),
-            ]);
-          }
-
-          if (P1secs >= 30 && P1secs < 40 && playerOneIncrement !== 0) {
-            setTimePlayerOne([
-              P1hrs,
-              P1mins + 1,
-              Math.abs(lastDigit1Num + i - 30),
-            ]);
-          }
-
-          if (P1mins >= 60 - playerOneIncrement && playerOneIncrement !== 0) {
-            setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 20)]);
-          }
-
-          if (P1mins >= 50 && playerOneIncrement !== 0) {
-            setTimePlayerOne([P1hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
-          }
-        }
+      if (P1mins >= 59 && P1secs >= 60 - playerOneIncrement) {
+        setTimePlayerOne([P1hrs + 1, 0, P1secs - 60 + playerOneIncrement]);
       }
     }
   }, [pauseTimerPlayerOne, playerOneIncrement]);
@@ -238,76 +175,13 @@ const Clock = (): JSX.Element => {
   useEffect(() => {
     if (pauseTimerPlayerTwo) {
       setTimePlayerTwo([P2hrs, P2mins, P2secs + playerTwoIncrement]);
-    }
 
-    const lastDigit1Str = String(P2secs).slice(-1);
-    const lastDigit1Num = Number(lastDigit1Str);
+      if (P2secs >= 60 - playerTwoIncrement) {
+        setTimePlayerTwo([P2hrs, P2mins + 1, P2secs - 60 + playerTwoIncrement]);
+      }
 
-    for (let i = 0; i <= 100; i++) {
-      if (i === playerTwoIncrement) {
-        if (P2secs >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
-          setTimePlayerTwo([
-            P2hrs,
-            P2mins + 1,
-            Math.abs(lastDigit1Num + i - 10),
-          ]);
-        }
-
-        if (P2mins >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
-          setTimePlayerTwo([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
-        }
-
-        if (playerTwoIncrement >= 12) {
-          if (P2secs >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
-            setTimePlayerTwo([
-              P2hrs,
-              P2mins + 1,
-              Math.abs(lastDigit1Num + i - 20),
-            ]);
-          }
-
-          if (P2secs >= 50 && playerTwoIncrement !== 0) {
-            setTimePlayerTwo([
-              P2hrs,
-              P2mins + 1,
-              Math.abs(lastDigit1Num + i - 10),
-            ]);
-          }
-
-          if (P2mins >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
-            setTimePlayerTwo([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 20)]);
-          }
-
-          if (P2mins >= 50 && playerTwoIncrement !== 0) {
-            setTimePlayerTwo([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
-          }
-        }
-
-        if (playerTwoIncrement >= 25) {
-          if (P2secs >= 50 && playerTwoIncrement !== 0) {
-            setTimePlayerOne([
-              P2hrs,
-              P2mins + 1,
-              Math.abs(lastDigit1Num + i - 10),
-            ]);
-          }
-
-          if (P2secs >= 30 && P2secs < 40 && playerTwoIncrement !== 0) {
-            setTimePlayerOne([
-              P2hrs,
-              P2mins + 1,
-              Math.abs(lastDigit1Num + i - 30),
-            ]);
-          }
-
-          if (P2mins >= 60 - playerTwoIncrement && playerTwoIncrement !== 0) {
-            setTimePlayerOne([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 20)]);
-          }
-
-          if (P2mins >= 50 && playerTwoIncrement !== 0) {
-            setTimePlayerOne([P2hrs + 1, 0, Math.abs(lastDigit1Num + i - 10)]);
-          }
-        }
+      if (P2mins >= 59 && P2secs >= 60 - playerTwoIncrement) {
+        setTimePlayerTwo([P2hrs + 1, 0, P2secs - 60 + playerTwoIncrement]);
       }
     }
   }, [pauseTimerPlayerTwo, playerTwoIncrement]);
