@@ -247,7 +247,8 @@ const Clock = (): JSX.Element => {
       } else if (
         e.key === "p" &&
         pauseAllTimer &&
-        (!initialTimePlayerOne || !initialTimePlayerTwo)
+        (!initialTimePlayerOne || !initialTimePlayerTwo) &&
+        !settingsModal
       ) {
         allTimerResume();
       } else if (e.key === "f") {
@@ -264,6 +265,7 @@ const Clock = (): JSX.Element => {
       pauseTimerPlayerOne,
       pauseTimerPlayerTwo,
       pauseAllTimer,
+      settingsModal,
       muteSound,
     ]
   );
