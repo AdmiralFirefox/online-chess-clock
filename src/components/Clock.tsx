@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import SettingsModal from "./SettingsModal";
 import useWindowSize from "../hooks/useWindowSize";
 import styles from "../styles/Clock.module.scss";
@@ -231,6 +231,50 @@ const Clock = (): JSX.Element => {
       document.getElementsByTagName("body")[0].className = "unset";
     };
   }, []);
+
+  const handleKeyDown = useCallback(
+    (e: { keyCode: number; key: string }) => {
+      if (e.key === "l" && initialTimePlayerOne) {
+        startTimerPlayerOne();
+      } else if (e.key === "a" && initialTimePlayerTwo) {
+        startTimerPlayerTwo();
+      } else if (e.keyCode == 32 && pauseTimerPlayerOne && !pauseAllTimer) {
+        playerTwoPause();
+      } else if (e.keyCode == 32 && pauseTimerPlayerTwo && !pauseAllTimer) {
+        playerOnePause();
+      } else if (e.key === "p" && !pauseAllTimer) {
+        allTimerPause();
+      } else if (
+        e.key === "p" &&
+        pauseAllTimer &&
+        (!initialTimePlayerOne || !initialTimePlayerTwo)
+      ) {
+        allTimerResume();
+      } else if (e.key === "f") {
+        openSettingsModal();
+      } else if (e.key === "g") {
+        closeSettingsModal();
+      } else if (e.key === "v") {
+        setMuteSound(!muteSound);
+      }
+    },
+    [
+      initialTimePlayerOne,
+      initialTimePlayerTwo,
+      pauseTimerPlayerOne,
+      pauseTimerPlayerTwo,
+      pauseAllTimer,
+      muteSound,
+    ]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown]);
 
   return (
     <>

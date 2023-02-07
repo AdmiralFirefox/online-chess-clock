@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 
 $margin-space: 0.3em;
+$clock-height-desktop: 80%;
+$clock-spacing-desktop: 0.85em;
 
 .clock-background {
   background: #312e2b;
@@ -81,6 +83,53 @@ $margin-space: 0.3em;
         width: 3em;
         filter: invert(81%) sepia(99%) saturate(0%) hue-rotate(104deg)
           brightness(113%) contrast(100%);
+      }
+    }
+  }
+}
+
+@media (min-width: 52em) {
+  .clock-wrapper {
+    flex-direction: row;
+
+    .timer-button-top {
+      transform: rotate(360deg);
+      height: $clock-height-desktop;
+      margin-left: $clock-spacing-desktop;
+    }
+
+    .timer-button-top-active {
+      transform: rotate(360deg);
+      height: $clock-height-desktop;
+      margin-left: $clock-spacing-desktop;
+    }
+
+    .timer-button-top-lost {
+      transform: rotate(360deg);
+      height: $clock-height-desktop;
+      margin-left: $clock-spacing-desktop;
+    }
+
+    .timer-button-bottom {
+      height: $clock-height-desktop;
+      margin-right: $clock-spacing-desktop;
+    }
+
+    .timer-button-bottom-active {
+      height: $clock-height-desktop;
+      margin-right: $clock-spacing-desktop;
+    }
+
+    .timer-button-bottom-lost {
+      height: $clock-height-desktop;
+      margin-right: $clock-spacing-desktop;
+    }
+
+    .clock-settings {
+      flex-shrink: 2;
+
+      .settings-icon {
+        margin-left: 4.5em;
       }
     }
   }
