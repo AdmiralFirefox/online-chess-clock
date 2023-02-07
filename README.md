@@ -4,10 +4,22 @@ An online chess clock to use to play with your friends. I build this project for
 
 This is a **Progressive Web Application** so you can install it on your local device.
 
-**Note: I recommend viewing it on your phone since it may look weird if you try to view it on your desktop.**
-
 [You can view it here.](https://online-chess-clock.netlify.app/)
 
 [Alternate Link](https://online-chess-clock.pages.dev/)
 
+## Keys for Desktop
 
+**`a`** - Start timer for Player One
+
+**`l`** - Start timer for Player Two
+
+**`Space`** - Giving the clock to your opponent
+
+**`p`** - Toggle pause and resume
+
+**`f`** - Open Settings
+
+**`g`** - Close Settings
+
+**`v`** - Toggle mute and unmute sounds
