@@ -96,33 +96,39 @@ $clock-spacing-desktop: 0.85em;
       transform: rotate(360deg);
       height: $clock-height-desktop;
       margin-left: $clock-spacing-desktop;
+      margin-top: 0em;
     }
 
     .timer-button-top-active {
       transform: rotate(360deg);
       height: $clock-height-desktop;
       margin-left: $clock-spacing-desktop;
+      margin-top: 0em;
     }
 
     .timer-button-top-lost {
       transform: rotate(360deg);
       height: $clock-height-desktop;
       margin-left: $clock-spacing-desktop;
+      margin-top: 0em;
     }
 
     .timer-button-bottom {
       height: $clock-height-desktop;
       margin-right: $clock-spacing-desktop;
+      margin-bottom: 0em;
     }
 
     .timer-button-bottom-active {
       height: $clock-height-desktop;
       margin-right: $clock-spacing-desktop;
+      margin-bottom: 0em;
     }
 
     .timer-button-bottom-lost {
       height: $clock-height-desktop;
       margin-right: $clock-spacing-desktop;
+      margin-bottom: 0em;
     }
 
     .clock-settings {
