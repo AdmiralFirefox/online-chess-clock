@@ -5,6 +5,8 @@ import styles from "../styles/SettingsModal.module.scss";
 
 interface SettingsModalProps {
   closeSettingsModal: () => void;
+  muteSound: boolean;
+  muteClockSound: () => void;
   setTimePlayerOne: React.Dispatch<
     React.SetStateAction<[number, number, number]>
   >;
@@ -23,6 +25,8 @@ interface SettingsModalProps {
 
 const SettingsModal = ({
   closeSettingsModal,
+  muteSound,
+  muteClockSound,
   setTimePlayerOne,
   setTimePlayerTwo,
   setPlayerOneIncrementAmount,
@@ -501,6 +505,13 @@ const SettingsModal = ({
                 Save
               </button>
             </div>
+          </div>
+
+          <div className={styles["sound-section"]}>
+            <h1 className={styles["sound-section-title"]}>Sound</h1>
+            <button onClick={muteClockSound}>
+              {muteSound ? <img src="/mute.svg" /> : <img src="/unmute.svg" />}
+            </button>
           </div>
         </div>
       </div>

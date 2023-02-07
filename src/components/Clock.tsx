@@ -29,6 +29,8 @@ const Clock = (): JSX.Element => {
 
   const [settingsModal, setSettingsModal] = useState(false);
 
+  const [muteSound, setMuteSound] = useState(false);
+
   const playerOneTime = { P1hours: 0, P1minutes: 10, P1seconds: 0 };
   const playerTwoTime = { P2hours: 0, P2minutes: 10, P2seconds: 0 };
 
@@ -86,13 +88,23 @@ const Clock = (): JSX.Element => {
   // Pause Both Timer
   const allTimerPause = () => {
     setPauseAllTimer(true);
-    chessClockAudioTwo.current?.play();
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioTwo.current?.play();
+    }
   };
 
   // Resume Both Timer
   const allTimerResume = () => {
     setPauseAllTimer(false);
-    chessClockAudioTwo.current?.play();
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioTwo.current?.play();
+    }
   };
 
   // Pause Player One Timer
@@ -102,7 +114,12 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPlayerOneIncrement(playerOneIncrementAmount);
     setPlayerTwoIncrement(0);
-    chessClockAudioOne.current?.play();
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioOne.current?.play();
+    }
   };
 
   // Pause Player Two Timer
@@ -112,7 +129,12 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPlayerOneIncrement(0);
     setPlayerTwoIncrement(playerTwoIncrementAmount);
-    chessClockAudioOne.current?.play();
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioOne.current?.play();
+    }
   };
 
   // Start Timer Player One
@@ -122,7 +144,12 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPauseTimerPlayerTwo(true);
     setPlayerTwoIncrement(0);
-    chessClockAudioOne.current?.play();
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioTwo.current?.play();
+    }
   };
 
   // Start Timer Player Two
@@ -132,7 +159,12 @@ const Clock = (): JSX.Element => {
     setPauseAllTimer(false);
     setPauseTimerPlayerOne(true);
     setPlayerOneIncrement(0);
-    chessClockAudioOne.current?.play();
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioTwo.current?.play();
+    }
   };
 
   // Open Settings Modal
@@ -144,6 +176,11 @@ const Clock = (): JSX.Element => {
   // Close Settings Moda
   const closeSettingsModal = () => {
     setSettingsModal(false);
+  };
+
+  // Mute Sound
+  const muteClockSound = () => {
+    setMuteSound(!muteSound);
   };
 
   useEffect(() => {
@@ -307,6 +344,8 @@ const Clock = (): JSX.Element => {
       {settingsModal && (
         <SettingsModal
           closeSettingsModal={closeSettingsModal}
+          muteSound={muteSound}
+          muteClockSound={muteClockSound}
           setTimePlayerOne={setTimePlayerOne}
           setTimePlayerTwo={setTimePlayerTwo}
           setPlayerOneIncrementAmount={setPlayerOneIncrementAmount}
