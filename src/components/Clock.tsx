@@ -223,15 +223,6 @@ const Clock = (): JSX.Element => {
     }
   }, [pauseTimerPlayerTwo, playerTwoIncrement]);
 
-  useEffect(() => {
-    document.getElementsByTagName("body")[0].className =
-      styles["clock-background"];
-
-    () => {
-      document.getElementsByTagName("body")[0].className = "unset";
-    };
-  }, []);
-
   const handleKeyDown = useCallback(
     (e: { keyCode: number; key: string }) => {
       if (e.key === "l" && initialTimePlayerOne) {

@@ -5,12 +5,6 @@ $margin-space: 0.3em;
 $clock-height-desktop: 80%;
 $clock-spacing-desktop: 0.85em;
 
-.clock-background {
-  background: #312e2b;
-  overflow: hidden;
-  position: relative;
-}
-
 .clock-wrapper {
   display: flex;
   flex-direction: column;
