@@ -11,15 +11,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^2.0.2",
+    "@astrojs/react": "^2.2.1",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
-    "astro": "^2.0.6",
+    "astro": "^2.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "sass": "^1.58.0",
+    "sass": "^1.64.0",
     "vite-plugin-pwa": "^0.14.1"
   }
 }
