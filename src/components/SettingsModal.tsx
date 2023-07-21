@@ -376,6 +376,11 @@ const SettingsModal = ({
     setIncrementInputNotChanged(true);
   };
 
+  // Reload App
+  const reloadApp = () => {
+    window.location.reload();
+  };
+
   return (
     <div className={styles["settings-modal-wrapper"]}>
       <div
@@ -543,6 +548,13 @@ const SettingsModal = ({
             <h1 className={styles["sound-section-title"]}>Sound</h1>
             <button onClick={muteClockSound}>
               {muteSound ? <img src="/mute.svg" /> : <img src="/unmute.svg" />}
+            </button>
+          </div>
+
+          <div className={styles["reload-section"]}>
+            <h1 className={styles["reload-section-title"]}>Reload App</h1>
+            <button onClick={reloadApp}>
+              <img src="/restart.svg" alt="" />
             </button>
           </div>
         </div>

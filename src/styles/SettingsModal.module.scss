@@ -190,6 +190,24 @@
           }
         }
       }
+
+      .reload-section {
+        .reload-section-title {
+          color: #ffffffd9;
+          font-family: "Noto Sans", sans-serif;
+          font-size: 2rem;
+          margin-top: 0.8em;
+        }
+
+        button {
+          @include theme.setting-button();
+          margin-top: 0.3em;
+
+          img {
+            width: 3.5em;
+          }
+        }
+      }
     }
   }
 }
