@@ -18,6 +18,8 @@ This is a **Progressive Web Application** so you can install it on your local de
 
 **`p`** - Toggle pause and resume
 
+**`r`** - Restart clock
+
 **`f`** - Open Settings
 
 **`g`** - Close Settings
