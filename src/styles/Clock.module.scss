@@ -49,6 +49,14 @@ $clock-spacing-desktop: 0.85em;
     justify-content: space-evenly;
     width: 100%;
 
+    .reset-icon {
+      @include theme.setting-button();
+
+      img {
+        width: 3em;
+      }
+    }
+
     .play-pause-icon-disabled {
       @include theme.setting-button();
       cursor: not-allowed;
@@ -128,8 +136,12 @@ $clock-spacing-desktop: 0.85em;
     .clock-settings {
       flex-shrink: 2;
 
-      .settings-icon {
-        margin-left: 4.5em;
+      .play-pause-icon-disabled {
+        margin: 0em 3.5em;
+      }
+
+      .play-pause-icon {
+        margin: 0em 3.5em;
       }
     }
   }

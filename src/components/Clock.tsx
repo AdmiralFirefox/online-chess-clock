@@ -49,6 +49,18 @@ const Clock = (): JSX.Element => {
     P2seconds,
   ]);
 
+  const [[NewP1hrs, NewP1mins, NewP1secs], setResetTimePlayerOne] = useState([
+    P1hours,
+    P1minutes,
+    P1seconds,
+  ]);
+
+  const [[NewP2hrs, NewP2mins, NewP2secs], setResetTimePlayerTwo] = useState([
+    P2hours,
+    P2minutes,
+    P2seconds,
+  ]);
+
   const outOfTime =
     (P1hrs === 0 && P1mins === 0 && P1secs === 0) ||
     (P2hrs === 0 && P2mins === 0 && P2secs === 0);
@@ -82,6 +94,26 @@ const Clock = (): JSX.Element => {
       setTimePlayerTwo([P2hrs, P2mins - 1, 59]);
     } else {
       setTimePlayerTwo([P2hrs, P2mins, P2secs - 1]);
+    }
+  };
+
+  // Reset Timer
+  const resetTimer = () => {
+    setTimePlayerOne([NewP1hrs, NewP1mins, NewP1secs]);
+    setTimePlayerTwo([NewP2hrs, NewP2mins, NewP2secs]);
+    setPlayerOneIncrement(playerOneIncrementAmount);
+    setPlayerTwoIncrement(playerTwoIncrementAmount);
+    setSettingsModal(false);
+    setPauseAllTimer(true);
+    setPauseTimerPlayerOne(false);
+    setPauseTimerPlayerTwo(false);
+    setInitialTimePlayerOne(true);
+    setInitialTimePlayerTwo(true);
+
+    if (muteSound) {
+      return;
+    } else {
+      chessClockAudioOne.current?.play();
     }
   };
 
@@ -242,6 +274,8 @@ const Clock = (): JSX.Element => {
         !settingsModal
       ) {
         allTimerResume();
+      } else if (e.key === "r") {
+        resetTimer();
       } else if (e.key === "f") {
         openSettingsModal();
       } else if (e.key === "g") {
@@ -311,6 +345,10 @@ const Clock = (): JSX.Element => {
         )}
 
         <div className={styles["clock-settings"]}>
+          <button className={styles["reset-icon"]} onClick={resetTimer}>
+            <img src="/restart.svg" alt="Settings" />
+          </button>
+
           {outOfTime ? (
             <button className={styles["play-pause-icon-disabled"]}>
               <img src="/play.svg" alt="Pause" />
@@ -393,6 +431,8 @@ const Clock = (): JSX.Element => {
           setPauseTimerPlayerTwo={setPauseTimerPlayerTwo}
           setInitialTimePlayerOne={setInitialTimePlayerOne}
           setInitialTimePlayerTwo={setInitialTimePlayerTwo}
+          setResetTimePlayerOne={setResetTimePlayerOne}
+          setResetTimePlayerTwo={setResetTimePlayerTwo}
         />
       )}
     </>

@@ -21,6 +21,12 @@ interface SettingsModalProps {
   setPauseTimerPlayerTwo: React.Dispatch<React.SetStateAction<boolean>>;
   setInitialTimePlayerOne: React.Dispatch<React.SetStateAction<boolean>>;
   setInitialTimePlayerTwo: React.Dispatch<React.SetStateAction<boolean>>;
+  setResetTimePlayerOne: React.Dispatch<
+    React.SetStateAction<[number, number, number]>
+  >;
+  setResetTimePlayerTwo: React.Dispatch<
+    React.SetStateAction<[number, number, number]>
+  >;
 }
 
 const SettingsModal = ({
@@ -37,6 +43,8 @@ const SettingsModal = ({
   setPauseTimerPlayerTwo,
   setInitialTimePlayerOne,
   setInitialTimePlayerTwo,
+  setResetTimePlayerOne,
+  setResetTimePlayerTwo,
 }: SettingsModalProps): JSX.Element => {
   const { height } = useWindowSize();
 
@@ -76,6 +84,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 1, 0]);
+    setResetTimePlayerTwo([0, 1, 0]);
   };
 
   // Set Game Mode to Bullet Two
@@ -90,6 +100,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 2, 0]);
+    setResetTimePlayerTwo([0, 2, 0]);
   };
 
   // Set Game Mode to Blitz One
@@ -104,6 +116,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 3, 0]);
+    setResetTimePlayerTwo([0, 3, 0]);
   };
 
   // Set Game Mode to Blitz Two
@@ -118,6 +132,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 3, 0]);
+    setResetTimePlayerTwo([0, 3, 0]);
   };
 
   // Set Game Mode to Blitz Three
@@ -132,6 +148,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 5, 0]);
+    setResetTimePlayerTwo([0, 5, 0]);
   };
 
   // Set Game Mode to Blitz Four
@@ -146,6 +164,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 5, 0]);
+    setResetTimePlayerTwo([0, 5, 0]);
   };
 
   // Set Game Mode to Rapid One
@@ -160,6 +180,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 10, 0]);
+    setResetTimePlayerTwo([0, 10, 0]);
   };
 
   // Set Game Mode to Rapid Two
@@ -174,6 +196,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 10, 0]);
+    setResetTimePlayerTwo([0, 10, 0]);
   };
 
   // Set Game Mode to Rapid Three
@@ -188,6 +212,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 15, 0]);
+    setResetTimePlayerTwo([0, 15, 0]);
   };
 
   // Set Game Mode to Classical One
@@ -202,6 +228,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 30, 0]);
+    setResetTimePlayerTwo([0, 30, 0]);
   };
 
   // Set Game Mode to Classical Two
@@ -216,6 +244,8 @@ const SettingsModal = ({
     setPauseTimerPlayerTwo(false);
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
+    setResetTimePlayerOne([0, 30, 0]);
+    setResetTimePlayerTwo([0, 30, 0]);
   };
 
   // Handle Player One Hours Change
@@ -325,6 +355,7 @@ const SettingsModal = ({
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
     setPlayerOneInputNotChanged(true);
+    setResetTimePlayerOne([playerOneHours, playerOneMinutes, playerOneSeconds]);
   };
 
   // Handle Player Two Input Submit
@@ -336,6 +367,7 @@ const SettingsModal = ({
     setInitialTimePlayerOne(true);
     setInitialTimePlayerTwo(true);
     setPlayerTwoInputNotChanged(true);
+    setResetTimePlayerTwo([playerTwoHours, playerTwoMinutes, playerTwoSeconds]);
   };
 
   const handleEditIncrementSubmit = () => {
