@@ -3,7 +3,7 @@ import SettingsModal from "./SettingsModal";
 import useWindowSize from "../hooks/useWindowSize";
 import styles from "../styles/Clock.module.scss";
 
-const Clock = (): JSX.Element => {
+const Clock = () => {
   const { height } = useWindowSize();
 
   const chessClockAudioOne = useRef<HTMLAudioElement | undefined>(

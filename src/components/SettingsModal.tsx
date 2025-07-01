@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 import usePlayerTime from "../hooks/usePlayerTime";
 import styles from "../styles/SettingsModal.module.scss";
@@ -45,7 +45,7 @@ const SettingsModal = ({
   setInitialTimePlayerTwo,
   setResetTimePlayerOne,
   setResetTimePlayerTwo,
-}: SettingsModalProps): JSX.Element => {
+}: SettingsModalProps) => {
   const { height } = useWindowSize();
 
   const [playerOneInputNotChanged, setPlayerOneInputNotChanged] =
