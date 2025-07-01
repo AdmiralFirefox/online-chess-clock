@@ -34,6 +34,35 @@
       }
     }
 
+    // Desktop Controls
+    .desktop-controls-section {
+      @include theme.modal-section();
+      display: none;
+
+      p {
+        color: #ffffffd9;
+        font-family: "Noto Sans", sans-serif;
+        margin: 0.5em 0em;
+
+        span {
+          background: rgba(139, 137, 135, 0.4);
+          padding: 0.1em 0.5em;
+          border-radius: 5px;
+          font-weight: bold;
+        }
+
+        &:last-of-type {
+          margin-bottom: 2em;
+        }
+      }
+    }
+
+    @media (min-width: 52em) {
+      .desktop-controls-section {
+        display: block;
+      }
+    }
+
     // Bullet Section
     .bullet-section {
       @include theme.modal-section();

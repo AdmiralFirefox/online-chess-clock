@@ -393,6 +393,28 @@ const SettingsModal = ({
           </button>
         </div>
 
+        <div className={styles["desktop-controls-section"]}>
+          <h1>Desktop Controls</h1>
+          <p>
+            <span>a</span> - Start timer for Player One
+          </p>
+          <p>
+            <span>l</span> - Start timer for Player Two
+          </p>
+          <p>
+            <span>Space</span> - Giving the clock to your opponent
+          </p>
+          <p>
+            <span>p</span> - Toggle pause and resume
+          </p>
+          <p>
+            <span>r</span> - Restart clock
+          </p>
+          <p>
+            <span>v</span> - Toggle mute and unmute sounds
+          </p>
+        </div>
+
         <div className={styles["bullet-section"]}>
           <h1>Bullet</h1>
           <div className={styles["bullet-section-buttons"]}>
