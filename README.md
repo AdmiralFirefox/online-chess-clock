@@ -4,9 +4,7 @@ An online chess clock to use to play with your friends. I build this project for
 
 This is a **Progressive Web Application** so you can install it on your local device.
 
-[You can view it here.](https://online-chess-clock.netlify.app/)
-
-[Alternate Link](https://online-chess-clock.pages.dev/)
+[You can view it here.](https://online-chess-clock.pages.dev/)
 
 ## Keys for Desktop
 
